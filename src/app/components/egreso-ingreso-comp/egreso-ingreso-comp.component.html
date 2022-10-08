@@ -1,0 +1,47 @@
+<h1 class="title">Bienvenido Financiapp!</h1>
+<div class="body">
+  <h2>Ingreso de gastos o ingresos</h2>
+    <form #miFormulario="ngForm" (ngSubmit)="agregarMovimiento(miFormulario)">
+      <label>Fecha</label><br>
+      <input type="date" name="fecha" placeholder="Fecha" [(ngModel)]="EgresoIngresoServ.datosInput.fecha"><br>
+      <label>Concepto</label><br>
+      <input type="text" name="concepto" placeholder="Concepto" [(ngModel)]="EgresoIngresoServ.datosInput.concepto"><br>
+      <label>Monto</label><br>
+      <input type="number" name="monto" placeholder="$__ " [(ngModel)]="EgresoIngresoServ.datosInput.monto"><br>
+      <label>Categoria</label><br>
+      <select name="categoria" placeholder="" [(ngModel)]="EgresoIngresoServ.datosInput.categoria">
+        <option value="ingreso">Ingreso</option>
+        <option value="egreso">Egreso</option>
+      </select><br><br>
+      <button type="submit">Guardar</button>
+      <button type="button">Limpiar</button>
+    </form>
+  <hr>
+  <h2>Gestor de gastos</h2>
+  <table class="table" border="1">
+
+    <thead class="title">
+      <th>Fecha</th>
+      <th>Concepto</th>
+      <th>Monto</th>
+      <th>Categoria</th>
+      <th>...</th>
+    </thead>
+    <tbody>
+      <tr class="tr-table" *ngFor="let m of EgresoIngresoServ.documentos">
+        <td>{{ m.fecha }}</td>
+        <td>{{ m.concepto}}</td>
+        <td>$ {{ m.monto }}</td>
+        <td>{{ m.categoria}}</td>
+        <td><button class="btn_delete" (click)="eliminarMovimiento(m._id)">
+          x
+          </button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+    <hr>
+
+</div>
+

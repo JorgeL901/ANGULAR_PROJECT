@@ -19,11 +19,10 @@ export class EgresoIngresoServService {
     };
 
   obtenerMov(){
-    console.log("2")
     //Crear peticion al servidor (http) --> GET http://localhost:3000/obtener_movimiento
     let peticion = this.http.get<Movimiento_modelo[]>(this.URL_API + '/obtener_movimiento');
-    console.log(peticion)
     return peticion;
+
   }
 
   crearMov( datos : Movimiento_modelo){

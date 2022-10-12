@@ -22,9 +22,17 @@ app.use(cors())
 //var mov = require('/models/movimientos');
 const Movimiento = require("./models/movimientos");
 
+
+
 app.get('/obtener_movimiento', async function(req,res){
   var m = await Movimiento.find();
   res.send(m)
+})
+
+app.get('/obtener_grafica', async function(req,res){
+  var g = await Movimiento.find().select({"concepto":1 ,"monto":1 , "_id":0});
+  console.log(g)
+  res.send(g)
 })
 
 app.post('/crear_movimiento', async function(req,res){
@@ -35,6 +43,8 @@ app.post('/crear_movimiento', async function(req,res){
     res.send({mensaje :"Movimiento guardado"})
 
 })
+
+
 
 app.delete('/eliminar_movimiento/:id',async function(req,res){
   var id_mov = req.params.id;

@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+.leftPage{
+  display: inline-grid;
+  justify-content: flex-start;
+}
+.rightPage{
+  display: inline-grid;
+  justify-content: flex-end;
+  background-color: aquamarine;
+}
+
+.title{
+  background-color: #D35400;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 0;
+}
+

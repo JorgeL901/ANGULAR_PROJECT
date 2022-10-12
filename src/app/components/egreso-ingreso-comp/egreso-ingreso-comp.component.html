@@ -1,26 +1,36 @@
-<h1 class="title">Bienvenido Financiapp!</h1>
+<div class="principal">
 <div class="body">
   <h2>Ingreso de gastos o ingresos</h2>
     <form #miFormulario="ngForm" (ngSubmit)="agregarMovimiento(miFormulario)">
       <label>Fecha</label><br>
-      <input type="date" name="fecha" placeholder="Fecha" [(ngModel)]="EgresoIngresoServ.datosInput.fecha"><br>
+      <input type="date" name="fecha" placeholder="Fecha" [(ngModel)]="EgresoIngresoServ.datosInput.fecha" class="form-control"><br>
       <label>Concepto</label><br>
-      <input type="text" name="concepto" placeholder="Concepto" [(ngModel)]="EgresoIngresoServ.datosInput.concepto"><br>
+      <select name="concepto" placeholder="Concepto" [(ngModel)]="EgresoIngresoServ.datosInput.concepto" class="form-control">
+        <option value="Alimentacion">Alimentacion</option>
+        <option value="Inversiones">Inversiones</option>
+        <option value="Salario">Salario</option>
+        <option value="Vivienda">Vivienda</option>
+        <option value="Transporte">Transporte</option>
+        <option value="Cuentas">Cuentas y pagos</option>
+        <option value="Ropa">Ropa</option>
+        <option value="Salud">Salud e Higiene</option>
+        <option value="Otros">Otros gastos</option>
+      </select><br>
       <label>Monto</label><br>
-      <input type="number" name="monto" placeholder="$__ " [(ngModel)]="EgresoIngresoServ.datosInput.monto"><br>
+      <input min="0" type="number" name="monto" placeholder="$__ " [(ngModel)]="EgresoIngresoServ.datosInput.monto" class="form-control"><br>
       <label>Categoria</label><br>
-      <select name="categoria" placeholder="" [(ngModel)]="EgresoIngresoServ.datosInput.categoria">
+      <select name="categoria" placeholder="" [(ngModel)]="EgresoIngresoServ.datosInput.categoria" class="form-control">
         <option value="ingreso">Ingreso</option>
         <option value="egreso">Egreso</option>
       </select><br><br>
-      <button type="submit">Guardar</button>
-      <button type="button">Limpiar</button>
+      <button type="submit" class="btn btn-success">Guardar</button>
+      <button type="button" class="btn btn-warning">Limpiar</button>
     </form>
   <hr>
   <h2>Gestor de gastos</h2>
   <table class="table" border="1">
 
-    <thead class="title">
+    <thead class="title ">
       <th>Fecha</th>
       <th>Concepto</th>
       <th>Monto</th>
@@ -33,15 +43,19 @@
         <td>{{ m.concepto}}</td>
         <td>$ {{ m.monto }}</td>
         <td>{{ m.categoria}}</td>
-        <td><button class="btn_delete" (click)="eliminarMovimiento(m._id)">
-          x
-          </button>
+        <td><button class="btn_delete btn btn-warning" (click)="eliminarMovimiento(m._id)">
 
+          </button>
         </td>
       </tr>
     </tbody>
   </table>
+  <p> Total de movimientos {{EgresoIngresoServ.documentos.length}}</p>
+  <p [style.background-color]="total<0 ? 'red' : 'green'"> El resultado es $  {{total}} </p>
     <hr>
 
 </div>
-
+<app-graficas></app-graficas>
+</div>
+<h1>{{porceg}}</h1>
+<!--<h1 *ngIf="porceg ">Este es una prueba</h1>-->
